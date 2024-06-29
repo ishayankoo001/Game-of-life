@@ -30,9 +30,17 @@ public class HelloApplication extends Application {
         Cell[][] cells = CellCreator.createCells(w, h, universe);
         for (Cell[] row : cells) {
             for (Cell cell : row) {
-                pane.getChildren().add(cell.getRectangle(WIDTH, HEIGHT, w, h));
+                Rectangle r = cell.getRectangle(WIDTH, HEIGHT, w, h);
+                r.setOnMouseClicked(e -> {
+                    cell.click();
+                    r.setFill(cell.isActive() ? javafx.scene.paint.Color.BLACK : javafx.scene.paint.Color.WHITE);
+                });
+
+                pane.getChildren().add(r);
             }
         }
+
+
         Scene scene = new Scene(pane, 500, 500);
         stage.setTitle("Hello!");
         stage.setScene(scene);
