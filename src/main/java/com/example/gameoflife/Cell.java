@@ -2,6 +2,7 @@ package com.example.gameoflife;
 
 import com.SGS.dependency.Player;
 import com.SGS.dependency.Universe;
+import javafx.scene.shape.Rectangle;
 
 public class Cell extends Player {
     public int x;
@@ -12,6 +13,20 @@ public class Cell extends Player {
         super(name, universe);
         this.x = x;
         this.y = y;
+    }
+
+    public Rectangle getRectangle(int width, int height, int w, int h) {
+        int y1 = height / h;
+        int x1 = width / w;
+
+        Rectangle r = new Rectangle(x * x1, y * y1, x1*0.9, y1*0.9);
+        if(isActive()){
+            r.setFill(javafx.scene.paint.Color.BLACK);
+        } else {
+            r.setFill(javafx.scene.paint.Color.WHITE);
+        }
+        return r;
+
     }
 
     @Override

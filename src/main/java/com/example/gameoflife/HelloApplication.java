@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import com.SGS.dependency.*;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -19,12 +20,20 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         //create a scene with the table
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Pane pane = new Pane();
+        int HEIGHT = 500;
+        int WIDTH = 500;
+        int w = 10;
+        int h = 10;
         Rectangle rectangle = new Rectangle(10, 10, 10, 10);
-        Table table = new Table(10, 10);
-        table.setCell(1, 1, new Cell(true));
-
-        //show
+        Universe universe = new Universe(new Player[0], 8);
+        Cell[][] cells = CellCreator.createCells(w, h, universe);
+        for (Cell[] row : cells) {
+            for (Cell cell : row) {
+                pane.getChildren().add(cell.getRectangle(WIDTH, HEIGHT, w, h));
+            }
+        }
+        Scene scene = new Scene(pane, 500, 500);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
