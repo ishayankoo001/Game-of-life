@@ -5,12 +5,18 @@ import com.SGS.dependency.Universe;
 import javafx.scene.shape.Rectangle;
 
 public class Cell extends Player {
+
+
+
     public int x;
+
+
     public int y;
 
 
     public Cell(String name, Universe universe, int x, int y) {
         super(name, universe);
+        this.setIsActive(false);
         this.x = x;
         this.y = y;
     }
@@ -24,6 +30,8 @@ public class Cell extends Player {
             r.setFill(javafx.scene.paint.Color.BLACK);
         } else {
             r.setFill(javafx.scene.paint.Color.WHITE);
+            //add border
+            r.setStroke(javafx.scene.paint.Color.BLACK);
         }
         return r;
 
