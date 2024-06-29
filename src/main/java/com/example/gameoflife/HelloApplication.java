@@ -36,7 +36,7 @@ public class HelloApplication extends Application {
         }
 
         Scene scene = new Scene(pane, WIDTH, HEIGHT);
-        stage.setTitle("Hello!");
+        stage.setTitle("Game of life!");
         stage.setScene(scene);
         stage.show();
     }
