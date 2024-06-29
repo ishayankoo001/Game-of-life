@@ -28,12 +28,14 @@ public class HelloApplication extends Application {
         Rectangle rectangle = new Rectangle(10, 10, 10, 10);
         Universe universe = new Universe(new Player[0], 8);
         Cell[][] cells = CellCreator.createCells(w, h, universe);
+        cells[0][0].setIsActive(true);
         for (Cell[] row : cells) {
             for (Cell cell : row) {
                 pane.getChildren().add(cell.getRectangle(WIDTH, HEIGHT, w, h));
             }
         }
-        Scene scene = new Scene(pane, 500, 500);
+
+        Scene scene = new Scene(pane, WIDTH, HEIGHT);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
