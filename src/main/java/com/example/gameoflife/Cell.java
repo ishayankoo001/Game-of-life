@@ -36,6 +36,9 @@ public class Cell extends Player {
         return r;
 
     }
+    public void click() {
+        setIsActive(!isActive());
+    }
 
     @Override
     public boolean checkDeath() {
