@@ -1,8 +1,8 @@
 # Game of Life
 
 ## Overview
-The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.
-This project is an implementation of Game of Life that uses the Social Game System as the core for the processes of the game. each Cell is considered as a Player in SGS that can send messages to its neighbors (8 in the case of this project) to indicate whether it's alive or not.
+[The Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life), also known as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.
+This project is an implementation of Game of Life that uses the [Social Game System](https://github.com/ishayankoo001/Social-Game-System) as the core for the processes of the game. each Cell is considered as a Player in SGS that can send messages to its neighbors (8 in the case of this project) to indicate whether it's alive or not.
 
 ## Rules
 The game evolves on a grid of square cells, each cell being in one of two possible states:
@@ -20,30 +20,37 @@ Below are some of the well-known starting formations that show interesting behav
 
 ### Custom Formation
 You can choose any starting formation of your choice by clicking on the cells to make them alive or dead.
+
 ![RPentomino GIF](./Custom.gif)
 
 ### RPentomino
 A small pattern that evolves quickly and has a chaotic evolution.
+
 ![RPentomino GIF](./Penta.gif)
 
 ### Beehive
 A stable pattern that does not change from one generation to the next.
+
 ![Beehive GIF](./Beehive.gif)
 
 ### Glider
 A small pattern that travels across the board.
+
 ![Glider GIF](./Glider.gif)
 
 ### Blinker
 The simplest and smallest oscillator.
+
 ![Blinker GIF](./Blinker.gif)
 
 ### Pulsar
 A larger oscillator with a period of 3.
+
 ![Pulsar GIF](./Pulsar.gif)
 
 ### Pentadecathlon
 An oscillator with a period of 15, known for its unique interactions.
+
 ![Pentadecathlon GIF](./Penta.gif)
 
 
