@@ -16,6 +16,12 @@ public class Cell extends Player implements IPlayer {
     public Cell(String name, Universe universe, int x, int y) {
         super(name, universe);
         this.setIsActive(false);
+        Message msg = new Message(new int[universe.getK()]);
+        for (int i = 0; i < universe.getK(); i++) {
+            msg.getNumbers()[i] = 0;
+        }
+        setMessagesToRespond(msg);
+
         this.x = x;
         this.y = y;
     }

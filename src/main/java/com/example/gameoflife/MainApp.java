@@ -48,6 +48,8 @@ public class MainApp extends Application {
 
 
     public void showRectangleScene(Cell[][] cells) {
+        System.out.println("1"+ cells[5][5].getMessagesToRespond());
+
         GolGameRound gameRound = new GolGameRound(cells);
         Stage stage = new Stage();
         Pane pane = new Pane();
@@ -82,13 +84,7 @@ public class MainApp extends Application {
         primaryStage.show();
         //wait for two seconds
 
-        for (int i = 0; i < 10; i++) {
-            for (Cell[] row : cells) {
-                for (Cell cell : row) {
-                    cell.setMessagesToRespond(cell.getNewMessagesInbox());
-                }
-            }
-        }
+
         for (int i = 0; i < 10; i++) {
             for (Cell[] row : cells) {
                 for (Cell cell : row) {
@@ -96,21 +92,28 @@ public class MainApp extends Application {
                 }
             }
         }
-        System.out.println(cells[0][0].getNewMessagesInbox());
-
+        System.out.println("2"+ cells[5][5].getMessagesToRespond());
         for (int i = 0; i < 10; i++) {
             for (Cell[] row : cells) {
                 for (Cell cell : row) {
-                    if(cell.checkDeath()) {
-                        cell.setIsActive(false);
-                    }
+                    cell.setMessagesToRespond(cell.getNewMessagesInbox());
                 }
             }
-            System.out.println(cells[0][0].isActive());
+        }
+        System.out.println("3"+ cells[5][5].getMessagesToRespond());
+        System.out.println("3"+ cells[5][5].getAcquaintances());
+
+
+        for (int i = 0; i < 10; i++) {
+
             for (Cell[] row : cells) {
                 for (Cell cell : row) {
                     GolResponseFunction responseFunction = new GolResponseFunction();
-                    Message response = cell.getResponseFunction().getResponse(cell.getMessagesToRespond());
+                    cell.setResponseFunction(responseFunction);
+                    Message response = responseFunction.getResponse(cell.getMessagesToRespond());
+//                    if (cell.x == 0 && cell.y == 1) {
+//                        System.out.println("response is"+ response);
+//                    }
                     Message deadMessage = new Message(new int[universe.getK()]);
                     Message aliveMessage = new Message(new int[universe.getK()]);
                     for (int m = 0; m < universe.getK(); m++) {
@@ -120,11 +123,12 @@ public class MainApp extends Application {
                     if (response.equals(deadMessage)){
                         cell.setIsActive(false);
                     } else if (response.equals(aliveMessage)) {
-                        cell.setIsActive(true);
+                        //cell.setIsActive(true);
                     }
                     cell.respondToAllAcquiantances(response);
                 }
             }
+            System.out.println("4"+ cells[5][5].getMessagesToRespond());
 
         }
 
