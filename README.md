@@ -21,12 +21,12 @@ Below are some of the well-known starting formations that show interesting behav
 ### Custom Formation
 You can choose any starting formation of your choice by clicking on the cells to make them alive or dead.
 
-![RPentomino GIF](./Custom.gif)
+![RPentomino GIF](gifs/Custom.gif)
 
 ### RPentomino
 A small pattern that evolves quickly and has a chaotic evolution.
 
-![RPentomino GIF](./RPento.gif)
+![RPentomino GIF](gifs/RPento.gif)
 
 ### Beehive
 A stable pattern that does not change from one generation to the next.
@@ -36,22 +36,22 @@ A stable pattern that does not change from one generation to the next.
 ### Glider
 A small pattern that travels across the board.
 
-![Glider GIF](./Glider.gif)
+![Glider GIF](gifs/Glider.gif)
 
 ### Blinker
 The simplest and smallest oscillator.
 
-![Blinker GIF](./Blinker.gif)
+![Blinker GIF](gifs/Blinker.gif)
 
 ### Pulsar
 A larger oscillator.
 
-![Pulsar GIF](./Pulsar.gif)
+![Pulsar GIF](gifs/Pulsar.gif)
 
 ### Pentadecathlon
 An oscillator with a period of 15, known for its unique interactions.
 
-![Pentadecathlon GIF](./Penta.gif)
+![Pentadecathlon GIF](gifs/Penta.gif)
 
 
 ## Technologies
