@@ -18,6 +18,10 @@ The state of each cell changes in discrete time steps. The states of all of the 
 ## Starting Formations
 Below are some of the well-known starting formations that show interesting behaviors:
 
+### Custom Formation
+You can choose any starting formation of your choice by clicking on the cells to make them alive or dead.
+![RPentomino GIF](./Custom2.gif)
+
 ### RPentomino
 A small pattern that evolves quickly and has a chaotic evolution.
 ![RPentomino GIF](./RPento.gif)
