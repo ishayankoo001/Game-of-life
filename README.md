@@ -44,7 +44,7 @@ The simplest and smallest oscillator.
 ![Blinker GIF](./Blinker.gif)
 
 ### Pulsar
-A larger oscillator with a period of 3.
+A larger oscillator.
 
 ![Pulsar GIF](./Pulsar.gif)
 
