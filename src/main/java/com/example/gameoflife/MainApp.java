@@ -21,7 +21,7 @@ public class MainApp extends Application {
     int w = 30;
     int h = 30;
     private long lastUpdate = 0; // Time of last update
-    private static final long UPDATE_INTERVAL = 2_000_000_000;
+    private static final long UPDATE_INTERVAL = 1_000_000_000;
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -72,12 +72,14 @@ public class MainApp extends Application {
                 r.setHeight(rectHeight);
                 r.setFill(cell.isActive() ? Color.BLACK : Color.WHITE);
                 r.setStroke(Color.GRAY); // Optional: to see the grid lines
+
                 r.setOnMouseClicked(e -> {
                     cell.click();
                     r.setFill(cell.isActive() ? Color.BLACK : Color.WHITE);
                 });
 
                 pane.getChildren().add(r);
+
             }
         }
         primaryStage.setScene(new Scene(pane, WIDTH, HEIGHT));
@@ -133,7 +135,7 @@ public class MainApp extends Application {
     public void showIntroPage() {
         IntroPage introScene = new IntroPage(this, w, h);
         primaryStage.setScene(introScene.getScene());
-        primaryStage.setTitle("Intro Page");
+        primaryStage.setTitle("Welcome to the Game of Life!");
         primaryStage.show();
 
     }
