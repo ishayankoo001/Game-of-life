@@ -20,11 +20,11 @@ Below are some of the well-known starting formations that show interesting behav
 
 ### Custom Formation
 You can choose any starting formation of your choice by clicking on the cells to make them alive or dead.
-![RPentomino GIF](./Custom2.gif)
+![RPentomino GIF](./Custom.gif)
 
 ### RPentomino
 A small pattern that evolves quickly and has a chaotic evolution.
-![RPentomino GIF](./RPento.gif)
+![RPentomino GIF](./Penta.gif)
 
 ### Beehive
 A stable pattern that does not change from one generation to the next.
