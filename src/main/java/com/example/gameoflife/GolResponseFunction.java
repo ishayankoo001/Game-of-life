@@ -3,6 +3,9 @@ import com.SGS.dependency.IResponseFunction;
 import com.SGS.dependency.Message;
 
 public class GolResponseFunction implements IResponseFunction{
+    public GolResponseFunction() {
+    }
+
     @Override
     public Message getResponse(Message message) {
         int sum = 0;
@@ -23,6 +26,8 @@ public class GolResponseFunction implements IResponseFunction{
         } else {
             return deadMessage;
         }
+        //wait two seconds
+
     }
 
     @Override

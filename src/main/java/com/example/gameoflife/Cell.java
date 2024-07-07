@@ -1,10 +1,9 @@
 package com.example.gameoflife;
 
-import com.SGS.dependency.Player;
-import com.SGS.dependency.Universe;
+import com.SGS.dependency.*;
 import javafx.scene.shape.Rectangle;
 
-public class Cell extends Player {
+public class Cell extends Player implements IPlayer {
 
 
 
@@ -38,6 +37,34 @@ public class Cell extends Player {
     }
     public void click() {
         setIsActive(!isActive());
+    }
+
+    @Override
+    public void respondToMessages() {
+        super.respondToMessages();
+    }
+
+    public void sendToAll() {
+        for (AcquaintanceElement acq : getAcquaintances().getAcquaintanceElements()) {
+            if(acq == null) {
+                continue;
+            }
+            Player player = acq.getPlayer();
+            int playerIndex = acq.getNumber();
+            int msg = isActive() ? 1 : 0;
+            player.receiveMessage(msg, playerIndex);
+        }
+    }
+    public void respondToAllAcquiantances(Message calculatedResponses){
+        for (int i = 0; i < getAcquaintances().getAcquaintanceElements().length ; i++) {
+            AcquaintanceElement acq = getAcquaintances().getAcquaintanceElements()[i];
+            if (acq == null) {
+                continue;
+            }
+            Player player = acq.getPlayer();
+            int playerIndex = acq.getNumber();
+            player.receiveMessage(calculatedResponses.getNumbers()[i], playerIndex);
+        }
     }
 
     @Override

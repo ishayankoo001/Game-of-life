@@ -19,7 +19,7 @@ public class IntroPage {
         initialize();
     }
 
-    private void initialize() {
+    public Cell[][] initialize() {
         VBox vbox = new VBox();
         vbox.setSpacing(20);
 
@@ -45,8 +45,14 @@ public class IntroPage {
                 r.setHeight(rectHeight);
                 r.setFill(cell.isActive() ? Color.BLACK : Color.WHITE);
                 r.setStroke(Color.GRAY); // Optional: to see the grid lines
+                int finalRow = row;
+                int finalCol = col;
                 r.setOnMouseClicked(e -> {
+
                     cell.click();
+                    if (finalRow == 0 && finalCol == 1) {
+                        System.out.println(String.format("Cell is now %s", cell.isActive() ? "active" : "inactive"));
+                    }
                     r.setFill(cell.isActive() ? Color.BLACK : Color.WHITE);
                 });
 
@@ -55,10 +61,14 @@ public class IntroPage {
         }
 
         Button startButton = new Button("Start");
-        startButton.setOnAction(event -> mainApp.showRectangleScene(cells));
+        //return cells when start button is clicked
+        startButton.setOnAction(e -> {
+            mainApp.mainLoop(mainApp.getPrimaryStage(),cells);
+        });
 
         vbox.getChildren().addAll(gridPane, startButton);
         scene = new Scene(vbox, WIDTH, HEIGHT + 40); // Extra height for the button
+        return cells;
     }
 
     public Scene getScene() {

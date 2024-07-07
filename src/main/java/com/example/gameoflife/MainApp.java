@@ -1,4 +1,5 @@
 package com.example.gameoflife;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,15 +17,38 @@ import java.io.IOException;
 
 
 public class MainApp extends Application {
+    private long lastUpdate = 0; // Time of last update
+    private static final long UPDATE_INTERVAL = 2_000_000_000;
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     private Stage primaryStage;
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
         showIntroPage();
+        IntroPage introPage = new IntroPage(this);
+        introPage.initialize();
+    }
+
+    public void mainLoop(Stage stage, Cell[][] cells) {
+        primaryStage = stage;
+        AnimationTimer gameLoop = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (now - lastUpdate >= UPDATE_INTERVAL) {
+                    lastUpdate = now;
+                    showRectangleScene(cells);
+                }
+            }
+        };
+        gameLoop.start();
     }
 
 
     public void showRectangleScene(Cell[][] cells) {
+        GolGameRound gameRound = new GolGameRound(cells);
         Stage stage = new Stage();
         Pane pane = new Pane();
         int HEIGHT = 500;
@@ -32,7 +56,6 @@ public class MainApp extends Application {
         int w = 10;
         int h = 10;
         Universe universe = new Universe(new Player[0], 8);
-        cells[0][0].setIsActive(true);
 
         double rectWidth = (double) WIDTH / w;
         double rectHeight = (double) HEIGHT / h;
@@ -57,12 +80,61 @@ public class MainApp extends Application {
         }
         primaryStage.setScene(new Scene(pane, WIDTH, HEIGHT));
         primaryStage.show();
+        //wait for two seconds
+
+        for (int i = 0; i < 10; i++) {
+            for (Cell[] row : cells) {
+                for (Cell cell : row) {
+                    cell.setMessagesToRespond(cell.getNewMessagesInbox());
+                }
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            for (Cell[] row : cells) {
+                for (Cell cell : row) {
+                    cell.sendToAll();
+                }
+            }
+        }
+        System.out.println(cells[0][0].getNewMessagesInbox());
+
+        for (int i = 0; i < 10; i++) {
+            for (Cell[] row : cells) {
+                for (Cell cell : row) {
+                    if(cell.checkDeath()) {
+                        cell.setIsActive(false);
+                    }
+                }
+            }
+            System.out.println(cells[0][0].isActive());
+            for (Cell[] row : cells) {
+                for (Cell cell : row) {
+                    GolResponseFunction responseFunction = new GolResponseFunction();
+                    Message response = cell.getResponseFunction().getResponse(cell.getMessagesToRespond());
+                    Message deadMessage = new Message(new int[universe.getK()]);
+                    Message aliveMessage = new Message(new int[universe.getK()]);
+                    for (int m = 0; m < universe.getK(); m++) {
+                        aliveMessage.getNumbers()[m] = 1;
+                        deadMessage.getNumbers()[m] = 0;
+                    }
+                    if (response.equals(deadMessage)){
+                        cell.setIsActive(false);
+                    } else if (response.equals(aliveMessage)) {
+                        cell.setIsActive(true);
+                    }
+                    cell.respondToAllAcquiantances(response);
+                }
+            }
+
+        }
+
     }
     public void showIntroPage() {
         IntroPage introScene = new IntroPage(this);
         primaryStage.setScene(introScene.getScene());
         primaryStage.setTitle("Intro Page");
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {
