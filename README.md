@@ -2,6 +2,7 @@
 
 ## Overview
 The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.
+This project is an implementation of Game of Life that uses the Social Game System as the core for the processes of the game. each Cell is considered as a Player in SGS that can send messages to its neighbors (8 in the case of this project) to indicate whether it's alive or not.
 
 ## Rules
 The game evolves on a grid of square cells, each cell being in one of two possible states:
@@ -41,11 +42,6 @@ A larger oscillator with a period of 3.
 An oscillator with a period of 15, known for its unique interactions.
 ![Pentadecathlon GIF](./Penta.gif)
 
-## How to Use
-1. Clone the repository to your local machine.
-2. Run the application to initialize the Game of Life grid.
-3. Select a starting formation from the provided options or create a new one.
-4. Observe how the formation evolves over generations.
 
 ## Technologies
 - JavaFX for the GUI
