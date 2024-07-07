@@ -26,7 +26,7 @@ You can choose any starting formation of your choice by clicking on the cells to
 ### RPentomino
 A small pattern that evolves quickly and has a chaotic evolution.
 
-![RPentomino GIF](./Penta.gif)
+![RPentomino GIF](./RPento.gif)
 
 ### Beehive
 A stable pattern that does not change from one generation to the next.
