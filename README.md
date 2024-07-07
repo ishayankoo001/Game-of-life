@@ -31,7 +31,7 @@ A small pattern that evolves quickly and has a chaotic evolution.
 ### Beehive
 A stable pattern that does not change from one generation to the next.
 
-![Beehive GIF](./Beehive.gif)
+![Beehive GIF](gifs/Beehive.gif)
 
 ### Glider
 A small pattern that travels across the board.
