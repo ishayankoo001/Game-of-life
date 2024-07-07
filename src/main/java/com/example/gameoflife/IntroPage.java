@@ -14,23 +14,20 @@ public class IntroPage {
     private Scene scene;
     private MainApp mainApp;
 
-    public IntroPage(MainApp mainApp) {
+    public IntroPage(MainApp mainApp, int w, int h) {
         this.mainApp = mainApp;
-        initialize();
+        initialize(w, h);
     }
 
-    public Cell[][] initialize() {
+    public Cell[][] initialize(int w, int h) {
         VBox vbox = new VBox();
         vbox.setSpacing(20);
 
         Pane gridPane = new Pane();
         int HEIGHT = 500;
         int WIDTH = 500;
-        int w = 10;
-        int h = 10;
         Universe universe = new Universe(new Player[0], 8);
         Cell[][] cells = CellCreator.createCells(w, h, universe);
-        cells[0][0].setIsActive(true);
 
         double rectWidth = (double) WIDTH / w;
         double rectHeight = (double) HEIGHT / h;

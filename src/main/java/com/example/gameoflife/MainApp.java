@@ -17,6 +17,9 @@ import java.io.IOException;
 
 
 public class MainApp extends Application {
+
+    int w = 30;
+    int h = 30;
     private long lastUpdate = 0; // Time of last update
     private static final long UPDATE_INTERVAL = 2_000_000_000;
     public Stage getPrimaryStage() {
@@ -27,9 +30,10 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
+
         showIntroPage();
-        IntroPage introPage = new IntroPage(this);
-        introPage.initialize();
+        IntroPage introPage = new IntroPage(this, w, h);
+        introPage.initialize(w,h);
     }
 
     public void mainLoop(Stage stage, Cell[][] cells) {
@@ -39,7 +43,7 @@ public class MainApp extends Application {
             public void handle(long now) {
                 if (now - lastUpdate >= UPDATE_INTERVAL) {
                     lastUpdate = now;
-                    showRectangleScene(cells);
+                    showRectangleScene(cells, w, h);
                 }
             }
         };
@@ -47,16 +51,12 @@ public class MainApp extends Application {
     }
 
 
-    public void showRectangleScene(Cell[][] cells) {
-        System.out.println("1"+ cells[5][5].getMessagesToRespond());
-
+    public void showRectangleScene(Cell[][] cells, int w , int h) {
         GolGameRound gameRound = new GolGameRound(cells);
         Stage stage = new Stage();
         Pane pane = new Pane();
         int HEIGHT = 500;
         int WIDTH = 500;
-        int w = 10;
-        int h = 10;
         Universe universe = new Universe(new Player[0], 8);
 
         double rectWidth = (double) WIDTH / w;
@@ -85,35 +85,32 @@ public class MainApp extends Application {
         //wait for two seconds
 
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < w; i++) {
             for (Cell[] row : cells) {
                 for (Cell cell : row) {
                     cell.sendToAll();
                 }
             }
         }
-        System.out.println("2"+ cells[5][5].getMessagesToRespond());
-        for (int i = 0; i < 10; i++) {
+
+        for (int i = 0; i < w; i++) {
             for (Cell[] row : cells) {
                 for (Cell cell : row) {
                     cell.setMessagesToRespond(cell.getNewMessagesInbox());
                 }
             }
         }
-        System.out.println("3"+ cells[5][5].getMessagesToRespond());
-        System.out.println("3"+ cells[5][5].getAcquaintances());
 
 
-        for (int i = 0; i < 10; i++) {
+
+        for (int i = 0; i < w; i++) {
 
             for (Cell[] row : cells) {
                 for (Cell cell : row) {
                     GolResponseFunction responseFunction = new GolResponseFunction();
                     cell.setResponseFunction(responseFunction);
                     Message response = responseFunction.getResponse(cell.getMessagesToRespond());
-//                    if (cell.x == 0 && cell.y == 1) {
-//                        System.out.println("response is"+ response);
-//                    }
+
                     Message deadMessage = new Message(new int[universe.getK()]);
                     Message aliveMessage = new Message(new int[universe.getK()]);
                     for (int m = 0; m < universe.getK(); m++) {
@@ -123,18 +120,18 @@ public class MainApp extends Application {
                     if (response.equals(deadMessage)){
                         cell.setIsActive(false);
                     } else if (response.equals(aliveMessage)) {
-                        //cell.setIsActive(true);
+                        cell.setIsActive(true);
                     }
-                    cell.respondToAllAcquiantances(response);
+
                 }
             }
-            System.out.println("4"+ cells[5][5].getMessagesToRespond());
+
 
         }
 
     }
     public void showIntroPage() {
-        IntroPage introScene = new IntroPage(this);
+        IntroPage introScene = new IntroPage(this, w, h);
         primaryStage.setScene(introScene.getScene());
         primaryStage.setTitle("Intro Page");
         primaryStage.show();
