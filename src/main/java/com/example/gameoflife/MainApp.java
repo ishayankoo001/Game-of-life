@@ -55,8 +55,8 @@ public class MainApp extends Application {
         GolGameRound gameRound = new GolGameRound(cells);
         Stage stage = new Stage();
         Pane pane = new Pane();
-        int HEIGHT = 500;
-        int WIDTH = 500;
+        int HEIGHT = 620;
+        int WIDTH = 520;
         Universe universe = new Universe(new Player[0], 8);
 
         double rectWidth = (double) WIDTH / w;
